@@ -1,17 +1,4 @@
-# require_relative '../../todo'
-
-
-module View 
-  def self.print_list(task, task_id, description)
-      puts "#{task_id}. [ ] #{description}" if task.completed_at.nil?
-      puts "#{task_id}. [X] #{description}" if task.completed_at
-  end
-
-  def self.feedback(cmd_name)
-    puts "Task #{cmd_name}!"
-  end
-end
-
+require_relative '../views/view'
 
 class Task < ActiveRecord::Base
 
@@ -37,11 +24,3 @@ class Task < ActiveRecord::Base
   end
 
 end
-
-
-  # case ARGV[0]
-  # when 'list' then Task.list
-  # when 'add'  then View.feedback(Task.create(description: ARGV[1..-1].join(' ')), 'Added')
-  # when 'delete' then View.feedback(Task.delete(ARGV[1..-1]),'Deleted')
-  # when 'complete' then View.feedback(Task.find_by_id(ARGV[1..-1]).update_attributes(completed_at: Time.now), 'Completed')
-  # end
