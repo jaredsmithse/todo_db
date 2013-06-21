@@ -21,20 +21,19 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def add(description_arr)
-    Task.create(description: description_arr.join(' '))
+  def self.add(description_arr)
+    self.create(description: description_arr.join(' '))
     View.feedback('added')
   end
 
-  def delete(description_arr)
-    Task.delete(description_arr)
+  def self.delete(id_arr)
+    super
     View.feedback('deleted')
   end
 
-  def complete
-    Task.find_by_id(ARGV[1..-1]).update_attributes(completed_at: Time.now)
+  def self.complete(id_arr)
+    self.find_by_id(id_arr.first).update_attributes(completed_at: Time.now)
     View.feedback('completed')
-
   end
 
 end
